@@ -7,17 +7,18 @@ import cv2
 import PIL
 #import dnnlib.tflib as tflib
 import numpy as np
+import requests
 import deeplab_tools
 from tqdm import tqdm
 from PIL import Image
 
-DEEPLAB_MODEL_PATH = 'deeplab/deeplabv3_pascal_train_aug_2018_01_04.tar.gz'
+DEEPLAB_MODEL_PATH = 'models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz'
 STYLEGAN_MODEL_PATH ='network-snapshot-011265.pkl'
 TRUNCATION_PSI = 0.7
 
 def generate_single_face(Gs, deeplab_model):
     """
-    Generate and return a single random face cut out with deeplab
+    Generate and return a single random face cut out with models
     """
     # rnd = np.random.RandomState(None)
     # latents = rnd.randn(1, Gs.input_shape[1])
@@ -63,9 +64,44 @@ def get_players_without_faces(players_csv_path, player_pics_paths):
 
     return players_list
 
+# From: https://gist.github.com/wy193777/0e2a4932e81afc6aa4c8f7a2984f34e2
+def download_from_url(url, dst):
+    """
+    @param: url to download file
+    @param: dst place to put the file
+    """
+    file_size = int(requests.head(url).headers["Content-Length"])
+    if os.path.exists(dst):
+        first_byte = os.path.getsize(dst)
+    else:
+        first_byte = 0
+    if first_byte >= file_size:
+        return file_size
+    header = {"Range": "bytes=%s-%s" % (first_byte, file_size)}
+    pbar = tqdm(
+        total=file_size, initial=first_byte,
+        unit='B', unit_scale=True, desc=url.split('/')[-1])
+    req = requests.get(url, headers=header, stream=True)
+    with(open(dst, 'ab')) as f:
+        for chunk in req.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
+                pbar.update(1024)
+    pbar.close()
+    return file_size
+
 
 def main():
     print("Welcome to the EHM facepic generator.")
+
+    if not os.path.exists('models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz'):
+        print("Downloading models cut-out model. Please wait.")
+        download_from_url('http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz', 'models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz')
+
+    if not os.path.exists('models/network-snapshot-011265.pkl'):
+        print("Downloading StyleGAN model. Please wait.")
+        download_from_url('https://docs.google.com/uc?export=download&confirm=wL0c&id=1dTueR4LvPL4P1D107kEzfL0U8VkKvbeI', 'models/network-snapshot-011265.pkl')
+
     while True:
         players_csv_path = input("Please enter the absolute path your players .csv file: ")
         if os.path.exists(players_csv_path):

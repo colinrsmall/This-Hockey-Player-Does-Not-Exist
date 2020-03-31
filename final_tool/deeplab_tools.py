@@ -8,7 +8,7 @@ from PIL import Image
 
 
 class DeepLabModel(object):
-    """Class to load deeplab model and run inference."""
+    """Class to load models model and run inference."""
 
     INPUT_TENSOR_NAME = 'ImageTensor:0'
     OUTPUT_TENSOR_NAME = 'SemanticPredictions:0'
@@ -16,7 +16,7 @@ class DeepLabModel(object):
     FROZEN_GRAPH_NAME = 'frozen_inference_graph'
 
     def __init__(self, tarball_path):
-        """Creates and loads pretrained deeplab model."""
+        """Creates and loads pretrained models model."""
         self.graph = tf.Graph()
 
         graph_def = None
