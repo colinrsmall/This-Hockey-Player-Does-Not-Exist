@@ -21,14 +21,14 @@ opencv_python == 4.2.0.32
 requests == 2.21.0
 
 # final_tool/dnnlib/tflib/autosummary.py: 28,29
-tensorboard == 1.13.1
+tensorboard == 1.15
 
 # final_tool/deeplab/deeplab_tools.py: 6
 # final_tool/dnnlib/tflib/autosummary.py: 27
 # final_tool/dnnlib/tflib/network.py: 16
 # final_tool/dnnlib/tflib/optimizer.py: 24,27
 # final_tool/dnnlib/tflib/tfutil.py: 12
-tensorflow == 1.13.1
+tensorflow == 1.15
 
 # final_tool/facepic_generator.py: 11
 tqdm == 4.31.1
