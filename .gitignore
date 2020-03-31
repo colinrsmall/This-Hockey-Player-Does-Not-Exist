@@ -200,10 +200,10 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-.idea/
 *.png
 *.zip
 *.pkl
 *.tar.gz
 *.DS_Store
 *.tfrecord
+.idea/
