@@ -21,12 +21,11 @@ def generate_single_face(Gs, deeplab_model):
 	"""
 	Generate and return a single random face cut out with models
 	"""
-	# rnd = np.random.RandomState(None)
-	# latents = rnd.randn(1, Gs.input_shape[1])
-	# fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
-	# images = Gs.run(latents, None, truncation_psi=TRUNCATION_PSI, randomize_noise=True, output_transform=fmt)
-	TEMP_IMAGE = Image.open('test.png')
-	im = deeplab_model.trim(TEMP_IMAGE)
+	rnd = np.random.RandomState(None)
+	latents = rnd.randn(1, Gs.input_shape[1])
+	fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
+	images = Gs.run(latents, None, truncation_psi=TRUNCATION_PSI, randomize_noise=True, output_transform=fmt)
+	im = deeplab_model.trim(images[0])
 	im = cv2.cvtColor(im, cv2.COLOR_BGRA2RGBA)
 	im = PIL.Image.fromarray(im)
 	return im
