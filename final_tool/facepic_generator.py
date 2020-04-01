@@ -26,9 +26,9 @@ def generate_single_face(Gs, deeplab_model):
     latents = rnd.randn(1, Gs.input_shape[1])
     fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
     images = Gs.run(latents, None, truncation_psi=TRUNCATION_PSI, randomize_noise=True, output_transform=fmt)
-    im = deeplab_model.trim(images[0])
-    im = cv2.cvtColor(im, cv2.COLOR_BGRA2RGBA)
+    im = cv2.cvtColor(images[0], cv2.COLOR_BGRA2RGBA)
     im = PIL.Image.fromarray(im)
+    im = deeplab_model.trim(im)
     return im
 
 
@@ -45,6 +45,7 @@ def generate_faces_from_csv(players, output_directory):
         for player in tqdm(players):
             im = generate_single_face(Gs, deeplab_model)
             png_filename = os.path.join(output_directory, player)
+            im = PIL.Image.fromarray(im)
             im.save(png_filename)
 
 
