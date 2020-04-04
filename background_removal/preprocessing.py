@@ -53,11 +53,11 @@ def fill_with_purple():
 
 
 def segment_images():
-    pathlist = Path("/Users/colinrsmall/Desktop/EHM_Faces/background_removal/raw_images").rglob('*.png')
+    pathlist = Path("/Users/colinrsmall/Documents/GitHub/ehm_faces/background_removal/raw_images/").glob('*.png')
     for path in tqdm(pathlist):
         path_str = str(path)
         filename = str(path).split('/')[-1]
-        new_path = '/Users/colinrsmall/Desktop/EHM_Faces/background_removal/segmented_images/' + filename
+        new_path = '/Users/colinrsmall/Documents/GitHub/ehm_faces/background_removal/segmented_images/' + filename
         try:
             command = ['convert', path, '-fuzz', '60%', '-fill', 'rgb(192,128,128)', '+opaque', 'none', new_path]
             output = subprocess.run(command, stdout=subprocess.PIPE, timeout=5)
@@ -100,6 +100,6 @@ def create_training_lists():
 
 #delete_opaque_or_wrongly_sized_files()
 #fill_with_purple()
-#segment_images()
-create_training_lists()
+segment_images()
+#create_training_lists()
 sys.exit(0)
