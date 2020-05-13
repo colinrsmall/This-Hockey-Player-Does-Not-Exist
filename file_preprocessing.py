@@ -45,12 +45,18 @@ def delete_opaque_or_wrongly_sized_files(dir):
                 continue
 
             if size.stdout.decode("utf-8") != "157x200":
-                baseheight = 200
-                img = Image.open(path)
-                hpercent = (baseheight / float(img.size[1]))
-                wsize = int((float(img.size[0]) * float(hpercent)))
-                img = img.resize((wsize, baseheight), Image.ANTIALIAS)
-                img.save(path)
+                img = Image.open(path_str)
+                if( img.height > 200 or img.width > 200 ):
+                    if img.height > img.width:
+                        new_height = 200
+                        ratio = new_height / img.height
+                        new_width = int(img.width * ratio)
+                    else:
+                        new_width = 200
+                        ratio = new_width / img.height
+                        new_height = int(img.height * ratio)
+                    img = img.resize((new_width, new_height), Image.LANCZOS)
+                    img.save(path, 'PNG')
 
         except Exception as e:
             print(e)
@@ -61,9 +67,9 @@ def fill_with_purple(dir):
     pathlist = Path(dir).rglob('*.png')
     for path in tqdm(pathlist):
         path_str = str(path)
-        command = f"convert -background rgb(160,160,255) -gravity south -extent 200x200 -flatten {path_str} {path_str}"
+        command = ["convert", "-background", "rgb(31,44,56)", "-gravity", "south", "-extent", "200x200", "-flatten", path_str, path_str]
         try:
-            output = subprocess.run(command.split(), stdout=subprocess.PIPE, timeout=5)
+            output = subprocess.run(command, stdout=subprocess.PIPE, timeout=5)
             if output.stderr is not None:
                 print(output.stderr)
                 print(path_str)
@@ -91,8 +97,8 @@ def check_format():
             continue
 
 
-def resize_down():
-    pathlist = Path("/Users/colinrsmall/Downloads/content/results").glob('*.png1')
+def resize_down(dir):
+    pathlist = Path(dir).rglob('*.png')
     for path in tqdm(pathlist):
         path_str = str(path)
         command = f"convert {path_str} -resize 200x200 {path_str.split('.')[0]}1.png"
@@ -111,13 +117,13 @@ def resize_down():
         #     continue
 
 
-def convert_to_rgb():
-    pathlist = Path("/Users/colinrsmall/Desktop/EHM_Faces/faces/filtered/junior/upscaled").glob('*.png')
+def convert_to_rgb(dir):
+    pathlist = Path(dir).rglob('*.png')
     for path in tqdm(pathlist):
         path_str = str(path)
-        command = f"convert {path_str} -alpha remove {path_str}"
+        command = ["convert", path_str, "-alpha", "remove", path_str]
         try:
-            subprocess.run(command.split(), stdout=subprocess.PIPE, timeout=5)
+            subprocess.run(command, stdout=subprocess.PIPE, timeout=5)
         except Exception as e:
             print(e)
             print(path_str)
@@ -236,11 +242,7 @@ def get_players_without_faces():
     return map
 
 
-# delete_opaque_or_wrongly_sized_files()
-# fill_with_purple()
-#convert_to_rgb()
-#get_players_without_faces()
-filter_faces()
-delete_opaque_or_wrongly_sized_files('faces/filtered')
-fill_with_purple('faces/filtered')
+#delete_opaque_or_wrongly_sized_files('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces')
+#fill_with_purple('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces')
+convert_to_rgb('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces/upscaled/')
 sys.exit(0)

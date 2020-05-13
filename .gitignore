@@ -207,3 +207,5 @@ fabric.properties
 *.DS_Store
 *.tfrecord
 .idea/
+
+data/

@@ -15,7 +15,7 @@ from PIL import Image
 import urllib3
 
 DEEPLAB_MODEL_PATH = os.path.join('models', 'deeplabv3_pascal_train_aug_2018_01_04.tar.gz')
-STYLEGAN_MODEL_PATH =os.path.join('models', 'network-snapshot-011265.pkl')
+STYLEGAN_MODEL_PATH =os.path.join('models', 'network-snapshot-011325.pkl')
 TRUNCATION_PSI = 0.7
 
 def generate_single_face(Gs, deeplab_model):
@@ -78,7 +78,7 @@ def download_from_url(url, dst):
             file_size = int(requests.head(url).headers["Content-Length"])
         except:
             # Work around for missing content-length header from Google drive API
-            file_size = 674000000
+            file_size = 324000000
         if os.path.exists(dst):
             first_byte = os.path.getsize(dst)
         else:
@@ -87,7 +87,7 @@ def download_from_url(url, dst):
             return file_size
         pbar = tqdm(
             total=file_size, initial=first_byte,
-            unit='B', unit_scale=True, desc=url.split('/')[-1])
+            unit='B', unit_scale=True, desc=dst)
         req = requests.get(url, stream=True)
         with(open(dst, 'ab')) as f:
             for chunk in req.iter_content(chunk_size=1024):
@@ -106,15 +106,15 @@ def download_from_url(url, dst):
 def main():
     print("Welcome to the EHM facepic generator.")
 
-    if not os.path.exists('models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz'):
+    if not os.path.exists(DEEPLAB_MODEL_PATH):
         print("Downloading models cut-out model. Please wait.")
         os.makedirs('models/', exist_ok=True)
-        download_from_url('http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz', 'models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz')
+        download_from_url('http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz', DEEPLAB_MODEL_PATH)
 
-    if not os.path.exists('models/network-snapshot-011265.pkl'):
+    if not os.path.exists(STYLEGAN_MODEL_PATH):
         print("Downloading StyleGAN model. Please wait.")
         os.makedirs('models/', exist_ok=True)
-        download_from_url('https://www.googleapis.com/drive/v3/files/1dTueR4LvPL4P1D107kEzfL0U8VkKvbeI/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', 'models/network-snapshot-011265.pkl')
+        download_from_url('https://www.googleapis.com/drive/v3/files/1dNbWoeuIgHkg70L_2Ajmv3Ci5qQ3UYHd/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', STYLEGAN_MODEL_PATH)
 
     while True:
         players_csv_path = input("Please enter the absolute path your players .csv file: ")
@@ -149,6 +149,21 @@ def main():
             break
         else:
             print(f"Directory at {output_path} does not exist. Please double check the path.")
+
+
+    print("Please choose a variance level for faces:")
+    print("Very Low Variance      Low Variance        High Variance     Very High Variance")
+    print("<--- 0.6 ----------------- 0.7 ----------------- 0.8 ----------------- 0.9 --->")
+    print("Lower variance is less prone to generating unrealistic faces but will generate more boring faces.")
+    print("0.8 or 0.7 is recommended.")
+    while True:
+        psi = input("Variance level: ")
+        try:
+            TRUNCATION_PSI = float(psi)
+            break
+        except Exception:
+            print("Please enter a number betweeen 0 and 1")
+
 
     print(f"Generating {len(players)} faces will take up approximately {(len(players)*50)*0.001} MB. Do you wish to continue?")
     while True:
