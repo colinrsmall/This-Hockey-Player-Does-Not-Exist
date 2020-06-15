@@ -57,7 +57,7 @@ def get_players_without_faces(players_csv_path, player_pics_paths):
     with open(players_csv_path, newline='', encoding='ISO-8859-1', errors='ignore') as players_csv:
         players = csv.reader(players_csv, delimiter=',')
         for player in players:
-            if player[8].lower() == 'player':
+            if player[8].lower() == 'player' or player[8].lower() == 'player/non-player':
                 filename = player[1] + '_' + player[2] + '_' + player[3].replace('.', '_') + '.png'
                 players_list.append(filename)
                 for path in player_pics_paths:
