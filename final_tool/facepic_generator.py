@@ -54,7 +54,7 @@ def generate_faces_from_csv(players, output_directory):
 def get_players_without_faces(players_csv_path, player_pics_paths):
     players_list = []
 
-    with open(players_csv_path, newline='', encoding='ISO-8859-1'', errors='ignore') as players_csv:
+    with open(players_csv_path, newline='', encoding='ISO-8859-1', errors='ignore') as players_csv:
         players = csv.reader(players_csv, delimiter=',')
         for player in players:
             if player[8].lower() == 'player':
