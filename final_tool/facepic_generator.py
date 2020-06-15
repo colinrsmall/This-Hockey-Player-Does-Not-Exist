@@ -14,6 +14,8 @@ from dnnlib import tflib
 from PIL import Image
 import urllib3
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 DEEPLAB_MODEL_PATH = os.path.join('models', 'deeplabv3_pascal_train_aug_2018_01_04.tar.gz')
 STYLEGAN_MODEL_PATH =os.path.join('models', 'network-snapshot-011325.pkl')
 TRUNCATION_PSI = 0.7
