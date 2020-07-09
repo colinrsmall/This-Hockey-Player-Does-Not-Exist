@@ -1,5 +1,6 @@
 ![Readme Banner of Example Images](https://raw.githubusercontent.com/colinrsmall/ehm_faces/master/readme_banner.png)
 *These hockey players do not exist.*
+
 ---
 *This is not intended to be a how-to. If you are looking for a tutorial on how to train your own versions of StyleGAN, I would point you towards Gwern's page [here](https://www.gwern.net/Faces).*
 
