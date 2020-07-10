@@ -200,7 +200,16 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-*.png
+filtered_faces/
+raw_faces/
+faces/
+
+background_removal/raw_images
+background_removal/segmented_images
+background_removal/segmented_images_raw
+background_removal/tfrecord
+background_removal/with_background
+
 *.zip
 *.pkl
 *.tar.gz
@@ -209,3 +218,6 @@ fabric.properties
 .idea/
 
 data/
+final_tool/test.png
+stylegan-master/stylegan-teaser.png
+results/
