@@ -43,7 +43,7 @@ The last step in preparing the image set was to use the [dataset_tool.py script]
 
 #### StyleGAN Training
 
-With the prepared .tfrecord image sets, it was finally time to train the StyleGAN model. The model itself was traing using Google Colab, with the notebook available [here](https://colab.research.google.com/drive/1NH7bvTj-G-_Ji4XJV0mowRGwl5mrd0bV?usp=sharing). This notebook is a heavily-edited version of [this notebook](https://github.com/ak9250/stylegan-art/blob/master/styleganportraits.ipynb), developed to train StyleGAN on artwork. 
+With the prepared .tfrecord image sets, it was finally time to train the StyleGAN model. The model itself was traing using Google Colab, with the notebook available [here](https://github.com/colinrsmall/ehm_faces/blob/master/model_training.ipynb). This notebook is a heavily-edited version of [this notebook](https://github.com/ak9250/stylegan-art/blob/master/styleganportraits.ipynb), developed to train StyleGAN on artwork. 
 
 As you might see in that notebook, or elsewhere, training StyleGAN from scratch is incredibely time-intensive. NVIDIA reports that training of models on 1024px x 1024px images can take anywhere from 6 to 41 **days** depending on how many GPUs you have available (NVIDIA benchmarked these times with Tesla v100 GPUs, roughly equivalent to what is available on Colab). Needless to say, I did not spend 41 days training this model. 
 
@@ -73,4 +73,4 @@ We can then feed generated images into the face-cropper tool, creating color mas
 
 The culmination of this project was a final tool developed to generate, cut-out, and correctly name images based on the names and birthdates of players from EHM database file. This tool was originally intended for individual use by players of the games themselves. In an ideal world, a player would be able to load the final tool on their computer, feed it a save-game file from their game, and have the tool generate images for any players without one (as many players do use human-created facepacks). However, installing such a tool (and the associated drivers and tools required by StyleGAN) was deemed too technical to be accesible for a significant amount of EHM players. 
 
-Still, this final tool was developed (as avaiable in the Final Tool directory of this project), and a tentative hosted version can be found at [this Google Colab notebook](https://colab.research.google.com/drive/18te6gZfn8NTptAkbuXEN7cj2SVSkHoTy?usp=sharing).
+Still, this final tool was developed (as avaiable in the Final Tool directory of this project), and a tentative hosted version can be found at [this Google Colab notebook](https://github.com/colinrsmall/ehm_faces/blob/master/final_tool.ipynb).
