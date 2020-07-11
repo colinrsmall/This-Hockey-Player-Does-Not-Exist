@@ -74,3 +74,13 @@ We can then feed generated images into the face-cropper tool, creating color mas
 The culmination of this project was a final tool developed to generate, cut-out, and correctly name images based on the names and birthdates of players from EHM database file. This tool was originally intended for individual use by players of the games themselves. In an ideal world, a player would be able to load the final tool on their computer, feed it a save-game file from their game, and have the tool generate images for any players without one (as many players do use human-created facepacks). However, installing such a tool (and the associated drivers and tools required by StyleGAN) was deemed too technical to be accesible for a significant amount of EHM players. 
 
 Still, this final tool was developed (as avaiable in the Final Tool directory of this project), and a tentative hosted version can be found at [this Google Colab notebook](https://github.com/colinrsmall/ehm_faces/blob/master/notebooks/final_tool.ipynb).
+
+---
+
+## Files
+| Path | Description
+| :--- | :----------
+| [U24 Model](https://drive.google.com/file/d/1lCgDAocfd1efFmvB9qbS0WuSOU0w2s9N/view?usp=sharing) | Model trained to generate images for U24 players (used for generating the banner images).
+| U24 Dataset | To be uploaded.
+| All-age Model | To be uploaded.
+| All-age dataset | to be uploaded.
