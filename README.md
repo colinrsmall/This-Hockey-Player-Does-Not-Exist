@@ -1,3 +1,5 @@
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A81WYAK)
+
 ![Readme Banner of Example Images](https://raw.githubusercontent.com/colinrsmall/ehm_faces/master/readme_images/readme_banner.png)
 *These hockey players do not exist.*
 
