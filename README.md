@@ -4,6 +4,8 @@
 ---
 *This is not intended to be a how-to. If you are looking for a tutorial on how to train your own versions of StyleGAN, I would point you towards Gwern's page [here](https://www.gwern.net/Faces).*
 
+Note: As of 11 July, 2020, you will not be able to run the model training notebook yourself without making changes to file paths and without uploading your own version of the dataset. As the datasets for faces are uploaded, I will edit the training notebook to allow its running without needing to make changes.
+
 ---
 # ehm_faces
 EHM_Faces is a machine learning project that can generate high-quality, realistic ice hockey player portraits. Primarily meant for the game [Eastside Hockey Manager](http://www.eastsidehockey.com/) (EHM), this project can generate portraits either one-at-a-time or in batches (the resulting batches are called facepacks).
