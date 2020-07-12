@@ -88,3 +88,4 @@ Still, this final tool was developed (as avaiable in the Final Tool directory of
 | [U24 PNG Dataset](https://drive.google.com/file/d/1DFsYIQLWtmWJ6wusksD574n54w7dPCDi/view?usp=sharing) | 881 images of U24 ice hockey player portraits. All images are 200px x 200px in size and have a solid dark blue background.
 | [All-age Model](https://www.googleapis.com/drive/v3/files/1Nl_IReTP91UCJmE4chBCZE5f9YPbckRJ/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=medi) | Model trained to generate images for players of all ages.
 | [All-age PNG Dataset](https://drive.google.com/file/d/1zEIhThPsIDAfvrqH6qePSkmtNi2vqyw5/view?usp=sharing) | 1,937 images of ice hockey player portraits. All images are 200px x 200px in size and have a solid dark blue background.
+| [Generated Images](https://drive.google.com/file/d/1T-65dTNBk0BseZY1a74lwd4H1udLTZkd/view?usp=sharing) | 10,680 example generated faces.
