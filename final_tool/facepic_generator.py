@@ -108,15 +108,20 @@ def download_from_url(url, dst):
 def main():
     print("Welcome to the EHM facepic generator.")
 
+    u24 = bool(input("Would you like to generate images for U24 players or for players of all ages? 1/0: "))
+
     if not os.path.exists(DEEPLAB_MODEL_PATH):
         print("Downloading models cut-out model. Please wait.")
         os.makedirs('models/', exist_ok=True)
         download_from_url('http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz', DEEPLAB_MODEL_PATH)
 
     if not os.path.exists(STYLEGAN_MODEL_PATH):
-        print("Downloading StyleGAN model. Please wait.")
+        print("Downloading U24 StyleGAN model. Please wait.")
         os.makedirs('models/', exist_ok=True)
-        download_from_url('https://www.googleapis.com/drive/v3/files/1dNbWoeuIgHkg70L_2Ajmv3Ci5qQ3UYHd/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', STYLEGAN_MODEL_PATH)
+        if u24:
+            download_from_url('https://www.googleapis.com/drive/v3/files/1dNbWoeuIgHkg70L_2Ajmv3Ci5qQ3UYHd/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', STYLEGAN_MODEL_PATH)
+        else:
+            download_from_url('https://www.googleapis.com/drive/v3/files/1Nl_IReTP91UCJmE4chBCZE5f9YPbckRJ/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media',STYLEGAN_MODEL_PATH)
 
     while True:
         players_csv_path = input("Please enter the absolute path your players .csv file: ")
