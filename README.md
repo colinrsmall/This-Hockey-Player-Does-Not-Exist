@@ -85,6 +85,6 @@ Still, this final tool was developed (as avaiable in the Final Tool directory of
 | Path | Description
 | :--- | :----------
 | [U24 Model](https://drive.google.com/file/d/1lCgDAocfd1efFmvB9qbS0WuSOU0w2s9N/view?usp=sharing) | Model trained to generate images for U24 players (used for generating the banner images).
-| U24 Dataset | To be uploaded.
+| [U24 PNG Dataset](https://drive.google.com/file/d/1DFsYIQLWtmWJ6wusksD574n54w7dPCDi/view?usp=sharing) | 881 images of U24 ice hockey player portraits. All images are 200px x 200px in size and have a solid dark blue background.
 | All-age Model | To be uploaded.
-| All-age dataset | to be uploaded.
+| [All-age PNG Dataset](https://drive.google.com/file/d/1zEIhThPsIDAfvrqH6qePSkmtNi2vqyw5/view?usp=sharing) | 1,937 images of ice hockey player portraits. All images are 200px x 200px in size and have a solid dark blue background.
