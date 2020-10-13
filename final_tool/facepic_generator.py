@@ -50,7 +50,7 @@ def generate_faces_from_csv(players, output_directory):
             os.makedirs(output_directory, exist_ok=True)
             print("Generating faces. Please wait.")
             for player, dob in tqdm(players):
-                if dob > '1994.1.1':
+                if dob > datetime.datetime.strptime('1994.1.1', '%Y.%m.%d'):
                     im = generate_single_face(G_jr, deeplab_model)
                 else:
                     im = generate_single_face(G_sr, deeplab_model)
