@@ -187,7 +187,7 @@ def main():
     #         print(f"Directory at {output_path} does not exist. Please double check the path.")
 
     output_path = players_csv_path.split('.csv')[0]
-    os.mkdir(output_path)
+    os.makedirs(output_path, exist_ok=True)
 
     # print("Please choose a variance level for faces:")
     # print("Very Low Variance      Low Variance        High Variance     Very High Variance")
