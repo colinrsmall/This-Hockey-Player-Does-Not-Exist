@@ -78,7 +78,7 @@ def generate_faces_from_csv(players, output_directory):
 #     return players_list
 
 
-def get_players_from_csv(players_csv_path):
+def get_players_from_csv(players_csv_path, player_pics_paths):
     players_list = []
 
     with open(players_csv_path, newline='', encoding='ISO-8859-1', errors='ignore') as players_csv:
@@ -88,6 +88,12 @@ def get_players_from_csv(players_csv_path):
                 filename = player[1] + '_' + player[2] + '_' + player[3].replace('.', '_') + '.png'
                 dob = datetime.datetime.strptime(player[3], '%d.%m.%Y')
                 players_list.append((filename, dob))
+                for path in player_pics_paths:
+                    if os.path.isfile(os.path.join(path, filename)):
+                        try:
+                            players_list.remove(filename)
+                        except:
+                            continue
 
     return players_list
 
@@ -153,25 +159,25 @@ def main():
         else:
             print(f"File at {players_csv_path} does not exist. Please double check that you entered the path correctly.")
 
-    # player_pics_paths = []
-    # path_entered = False
+    player_pics_paths = []
+    path_entered = False
 
-    # while True:
-    #     if path_entered:
-    #         print("You have selected path(s):")
-    #         for path in player_pics_paths:
-    #             print(path)
-    #     print("Please enter a path to a directory containing facepics (likely at least EHM/data/pictures/players).")
-    #     player_pics_path = input("Or hit enter if you're done entering paths: ")
-    #     if player_pics_path == '':
-    #         break
-    #     if os.path.isdir(player_pics_path):
-    #         player_pics_paths.append(player_pics_path)
-    #         path_entered = True
-    #     else:
-    #         print(f"Directory at {player_pics_path} does not exist. Please double check that you entered the path correctly.")
+    while True:
+        if path_entered:
+            print("You have selected path(s):")
+            for path in player_pics_paths:
+                print(path)
+        print("Please enter a path to a directory containing facepics (likely at least EHM/data/pictures/players).")
+        player_pics_path = input("Or hit enter if you're done entering paths: ")
+        if player_pics_path == '':
+            break
+        if os.path.isdir(player_pics_path):
+            player_pics_paths.append(player_pics_path)
+            path_entered = True
+        else:
+            print(f"Directory at {player_pics_path} does not exist. Please double check that you entered the path correctly.")
 
-    players = get_players_from_csv(players_csv_path)
+    players = get_players_from_csv(players_csv_path, player_pics_paths)
 
     # while True:
     #     output_path = input("Please enter a path to where you want facepics to be saved (likely EHM/data/pictures/players): ")
