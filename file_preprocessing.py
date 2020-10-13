@@ -46,7 +46,7 @@ def delete_opaque_or_wrongly_sized_files(dir):
 
             if size.stdout.decode("utf-8") != "157x200":
                 img = Image.open(path_str)
-                if( img.height > 200 or img.width > 200 ):
+                if img.height > 200 or img.width > 200:
                     if img.height > img.width:
                         new_height = 200
                         ratio = new_height / img.height
@@ -242,7 +242,7 @@ def get_players_without_faces():
     return map
 
 
-#delete_opaque_or_wrongly_sized_files('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces')
-#fill_with_purple('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces')
-convert_to_rgb('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces/upscaled/')
+delete_opaque_or_wrongly_sized_files('/Users/colinrsmall/Desktop/Faces')
+fill_with_purple('/Users/colinrsmall/Desktop/Faces')
+# convert_to_rgb('/Users/colinrsmall/Documents/GitHub/ehm_faces/raw_faces/upscaled/')
 sys.exit(0)
