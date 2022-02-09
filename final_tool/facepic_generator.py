@@ -145,12 +145,12 @@ def main():
     if not os.path.exists(STYLEGAN_MODEL_SR_PATH):
         print("Downloading StyleGAN model for senior players players. Please wait.")
         os.makedirs('models/', exist_ok=True)
-        download_from_url('https://www.googleapis.com/drive/v3/files/1Nl_IReTP91UCJmE4chBCZE5f9YPbckRJ/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media',STYLEGAN_MODEL_SR_PATH)
+        download_from_url('https://www.googleapis.com/drive/v3/files/1FP3cIVy1s25IHhjJ4xyNpvLDVJ_mXW2Z/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media',STYLEGAN_MODEL_SR_PATH)
 
     if not os.path.exists(STYLEGAN_MODEL_JR_PATH):
         print("Downloading StyleGAN model for junior players. Please wait.")
         os.makedirs('models/', exist_ok=True)
-        download_from_url('https://www.googleapis.com/drive/v3/files/1dNbWoeuIgHkg70L_2Ajmv3Ci5qQ3UYHd/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', STYLEGAN_MODEL_JR_PATH)
+        download_from_url('https://www.googleapis.com/drive/v3/files/1D3LLn_JyQKkZqdv86VPTtTykjYtEM1hC/?key=AIzaSyCSPE2HSzu2RBUX7E1Fml9lGadzsGt37w8&alt=media', STYLEGAN_MODEL_JR_PATH)
 
     while True:
         players_csv_path = input("Please enter the absolute path your players .csv file: ")
