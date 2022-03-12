@@ -2,7 +2,7 @@
 
 # final_tool/deeplab/deeplab_tools.py: 7
 # final_tool/facepic_generator.py: 7,12
-Pillow == 6.2.0
+Pillow == 9.0.1
 
 # final_tool/deeplab/deeplab_tools.py: 5
 # final_tool/dnnlib/tflib/autosummary.py: 26
