@@ -28,7 +28,7 @@ tensorboard == 1.15
 # final_tool/dnnlib/tflib/network.py: 16
 # final_tool/dnnlib/tflib/optimizer.py: 24,27
 # final_tool/dnnlib/tflib/tfutil.py: 12
-tensorflow == 1.15.4
+tensorflow == 2.9.3
 
 # final_tool/facepic_generator.py: 11
 tqdm == 4.31.1
