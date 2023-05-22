@@ -18,7 +18,7 @@ numpy == 1.16.2
 opencv_python == 4.2.0.32
 
 # final_tool/dnnlib/util.py: 22
-requests == 2.21.0
+requests == 2.31.0
 
 # final_tool/dnnlib/tflib/autosummary.py: 28,29
 tensorboard == 1.15
